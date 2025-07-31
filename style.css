@@ -1,0 +1,57 @@
+@font-face {
+    font-family: "Host Grotesk", sans-serif;
+    src: url(./fonts/HostGrotesk-VariableFont_wght.ttf);
+}
+
+body{
+    font-family: "Host Grotesk", sans-serif;
+    margin:0;
+    background-color: #002A32;
+    color: #F7F7F7;
+}
+
+header {
+    height: 100px;
+    border-bottom: 3px solid #F7F7F7;
+    box-shadow: 12px;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+header img {
+    height: 50px;
+}
+
+main {
+    display: flex;
+}
+
+#cards_in_deck {
+    min-height: calc(100vh - 203px);
+    
+}
+
+#active_card {
+    margin: 30px;
+    border-radius: 8px;
+    
+}
+
+#active_card img{
+    border-radius: 22px;
+    aspect-ratio: 1.3968;
+}
+
+#cards_in_deck img {
+    max-height: 150px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+footer {
+    height: 100px;
+    background-color: #F7F7F7;
+}
