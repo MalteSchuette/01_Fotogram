@@ -8,6 +8,7 @@ body{
     margin:0;
     background-color: #002A32;
     color: #F7F7F7;
+    padding: 15px;
 }
 
 header {
@@ -23,13 +24,13 @@ header img {
     height: 50px;
 }
 
-main {
-    display: flex;
-}
 
-#cards_in_deck {
-    min-height: calc(100vh - 203px);
-    
+.card img {
+    max-height: 150px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 #active_card {
@@ -43,15 +44,11 @@ main {
     aspect-ratio: 1.3968;
 }
 
-#cards_in_deck img {
-    max-height: 150px;
-    border-radius: 8px;
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
-}
-
 footer {
     height: 100px;
     background-color: #F7F7F7;
+}
+
+#top_area {
+    display: flex;
 }

@@ -15,23 +15,34 @@
         <img src="./img/Fotogram_Logo.svg" alt="logo of photogram">
     </header>
     <main>
-        <div id="active_card">
-            <img src="./img/cards/creatures/a1.webp" alt="">
-        </div>
-        <div id="cards_in_deck">
-            <div id="commander"></div>
-            <div id="creature">
-                <h2>Creatures (<span id="amount"></span>)</h2>
+        <div id="top_area">
+            <div id="active_card">
+                <img src="./img/cards/creature/a1.webp" alt="">
             </div>
-            <div id="sorcery"></div>
-            <div id="instant"></div>
-            <div id="artifact"></div>
-            <div id="enchantment"></div>
-            <div id="land"></div>
+            <div id="cards_in_deck" class="card">
+                <div id="commander"></div>
+                <div id="creature" class="card">
+                    <h2>Creatures (<span id="amount"></span>)</h2>
+                </div>
+            </div>
+        </div>
+        <div id="sorcery" class="card">
+            <h2>Sorceries</h2>
+        </div>
+        <div id="instant" class="card">
+            <h2>Instants</h2>
+        </div>
+        <div id="artifact" class="card">
+            <h2>Artifacts</h2>
+        </div>
+        <div id="enchantment" class="card">
+            <h2>Enchantments</h2>
+        </div>
+        <div id="land" class="card">
+            <h2>Lands</h2>
         </div>
     </main>
     <footer>
-
     </footer>
 </body>
 
