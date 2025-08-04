@@ -24,9 +24,6 @@ header img {
     height: 50px;
 }
 
-
-
-
 .overlay {
     position: absolute;
     top: 0;
@@ -208,4 +205,134 @@ footer {
 
 .d_none {
     display: none;
+}
+
+.content_policy_link {
+    display: none;
+}
+
+.text_policy {
+    height: calc(100vh - 204px);
+    width: 530px;
+}
+
+.content_policy_link {
+    display: none;
+}
+
+
+@media (max-width: 810px) {
+
+    .content_policy {
+        display: none;
+    }
+
+    .content_policy_link {
+        display: flex;
+        margin: 20px;
+    }
+
+    .content_policy_link a {
+        color: white;
+    }
+
+    .overlay_window {
+        width: 600px;
+        height: 600px;
+    }
+
+    .overlay_left {
+        width: 300px;
+        height: 500px;
+    }
+
+    .overlay_right {
+        width: 300px;
+        height: 500px;
+    }
+}
+
+@media (max-width: 640px) {
+    .main_left {
+        height: calc(100vh - 254px);
+        width: auto;
+        border-bottom: none;
+
+    }
+
+    #activ_card img {
+        width: 180px
+    }
+
+    .main_left h2 {
+        font-size: 20px;
+    }
+
+    .main_right {
+        width: 200px;
+    }
+
+    .main_right h2 {
+        font-size: 20px;
+    }
+
+    .overlay_window {
+        width: 400px;
+        height: 700px;
+        font-size: 16px;
+    }
+
+    .upper_overlay_window {
+        flex-direction: column;
+    }
+
+    .overlay_left {
+        width: 390px;
+        height: 300px;
+    }
+
+    .overlay_left  img {
+        width: 150px;
+    }
+
+    .overlay_right {
+        width: 390px;
+        height: 300px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .text_policy {
+    width: 300px;
+}
+}
+
+@media (max-width: 485px) {
+
+    .main_left {
+        display: none ;
+    }
+
+    .main_right {
+        width: auto;
+        height: calc(100vh - 254px);
+    }
+
+    .main_right img {
+        height: 170px;
+        border-radius: 8px ;
+    }
+
+    .overlay_window {
+        width: 305px;
+    }
+
+    .overlay_left {
+        width: 305px;
+    }
+
+    .overlay_right {
+        width: 305px;
+    }
+
 }

@@ -169,6 +169,7 @@ function amountCards(array, id) {
     document.getElementById(id).innerHTML += " " + "(" + array.length + ")"
 }
 
+
 amountCards(creature, "h2_creature")
 amountCards(sorcery, "h2_sorcery")
 amountCards(instant, "h2_instant")
@@ -179,6 +180,7 @@ amountCards(lands, "h2_land")
 
 // Hier wird das Bild für die linke main gewählt (detailed view). Die ID die das Event auslöst wird ausgelesen und ist gleichzeitig auch der Dateiname.
 // Mit einer if Schleife stelle ich fest in welchen Ordner die Funktion suchen muss. 
+
 
 function getDetails(event) {
     let folder = ""
@@ -208,6 +210,7 @@ function getDetails(event) {
     document.getElementById("activ_card").innerHTML = `<img id=${currentId} src="./img/cards/${folder}/${currentId}.webp" alt="${currentId}">`
 }
 
+
 // Mit der Togglefunktion lasse ich zum Schluss auch die Inhalte rendern. 
 
 
@@ -215,8 +218,8 @@ function toggleOverlay() {
     let overlayRef = document.getElementById("overlay");
     overlayRef.classList.toggle("d_none");
     renderOverlay(event)
-
 }
+
 
 function getCardname() {
     if (currentId.includes("x")) {
@@ -262,8 +265,8 @@ function getCardname() {
         description = landText[i-1]
     }
 return cardName;
-
 }
+
 
 function getDescription() {
     if (currentId.includes("x")) {
@@ -302,6 +305,7 @@ return cardName;
 //Hiermit Fülle ich das Overlay, die If-Abfrage klärt wieder welche Karte geklickt wurde um das richtige Bild sowie Index anzuzeigen. Für den HTML input habe ich
 //eine eigene Funktion gebaut um js und html zu trennen. amountType muss nicht mit übergeben werden, weil global. 
 
+
 function renderOverlay(event){
     let folder = ""
     currentId = event.currentTarget.id;
@@ -338,12 +342,10 @@ function renderOverlay(event){
     fillOverlay(currentId, folder)   
 }
 
-// Hier nutze ich die ID um wieder auf die Listen zu verweisen und den passenden Namen pro Karte rauszufinden und so die richtigen Infos pro Karte anzuzeigen.
-
-
 
 // Mit der Funktion fülle ich das Overlay_window mit den ausgewählten Karteninfos. Ich gebe dem Fenster direkt eine ID damit ich diese Info an
 // eine If Schleife weitergeben kann die das Bild davor/danach bestimmt. 
+
 
 function fillOverlay(currentId, folder) {
         getCardname()
@@ -373,10 +375,12 @@ function checkEvent() {
 }
 
 
-
-
-// Hier hatte ich ein Problem auf dessen Lösung ich nicht selbst gekommen bin und hab mich nach längeren googeln an Chatgpt gewendet. Der hat parseInt vorgeschlagen und das klappt top.
-// Hatte die currentId als string erhalten und muss die für index++ natürlich in nen INT umwandeln. 
+// Hier hatte ich ein Problem auf dessen Lösung ich nicht selbst gekommen bin und hab mich nach längeren googeln an Chatgpt gewendet.
+// Beim klicken vom button ist der immer von 1 auf 11 gesprungen. War also schon klar, dass das ne komische Umrechnung iwo ist wo er "1" + 1 rechnet.
+// Der hat parseInt vorgeschlagen und das klappt top.
+// Dazu kam ein Problem, dass renderOverlay(event) ein event als paramenter benötigte und dadurch alles sehr viel komplizierter machte. 
+// Da kam der vorschlag von einem dummyEvent um die Werte so zu übergeben. Vermutlich eine unelegante, aber wirkunsvolle Lösung. Merk ich mir. 
+ 
 
 function nextCard(currentId) {
     console.log(currentId);
@@ -442,7 +446,6 @@ renderOverlay(dummyEvent)
 }
 
 
-
 function lastCard(currentId) {
     console.log(currentId);
 
@@ -501,7 +504,6 @@ function lastCard(currentId) {
     }
 
 let newId = prefix + index;
-
 let dummyEvent = {currentTarget: {id: newId}};
 renderOverlay(dummyEvent)
 }
