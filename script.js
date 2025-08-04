@@ -1,7 +1,5 @@
 //2do wenn noch zeit ist:
 // Infobox springt bei schnellen wechseln während die Bilder laden. Evtl. position absolute? 
-// Footer Text . Am besten 2 reihig damits nicht so voll aussieht. 
-// texturen in den BG bringen. 
 // 29x die Landkarte sollte sich ein Bild wiederholen, bzw. ne anzahl über der Grafik erscheinen. 
 
 let currentId = ""
