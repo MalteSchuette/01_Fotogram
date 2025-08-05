@@ -1,7 +1,3 @@
-//2do wenn noch zeit ist:
-// Infobox springt bei schnellen wechseln während die Bilder laden. Evtl. position absolute? 
-// 29x die Landkarte sollte sich ein Bild wiederholen, bzw. ne anzahl über der Grafik erscheinen. 
-
 let currentId = ""
 let cardName = ""
 let description = ""
@@ -135,23 +131,7 @@ let landText = [
 
 ]
 
-// Die Funktion geht die Liste durch und packt für jede Karte in der Liste ein Bild ins HTML. 
-// Jedes Bild bekommt auch eine ID zusammengesetzt aus dem letter und index damits einzigartig ist. 
-// Parameter wählen gleich den richtigen Ordner im img folder und auch die kartenbilder in img wurden numerisch benannt damit sie zum index passen.
-// Ein Alternativtext wird miterstellt und geben auch den Kartennamen mit an. Der wird mit array[i] aus der liste
-
-function setImage(cardtype, id, folder, letter) {
-    for (let i = 1; i<=cardtype.length; i++) {
-        document.getElementById(id).innerHTML += 
-        `<img id=${letter}${i} class="cards" onmouseover="getDetails(event)" onclick="toggleOverlay(event)" src="./img/cards/${folder}/${letter}${i}.webp" alt="Grafik von Karte ${cardtype[i]}">`
-    }
-}
-
-// "cardtype" = which array, 
-// "id" is where the function is putting it in the HTML,
-// "folder" is the name of the img folder, 
-// "letter" is startin letter of the img name
-
+function init() {
 setImage(commander, "activ_card", "commander", "x" )
 setImage(commander, "commander", "commander", "x")
 setImage(creature, "creature", "creature","c")
@@ -160,24 +140,26 @@ setImage(instant, "instant", "instants", "i")
 setImage(artifact, "artifact", "artifact", "a")
 setImage(enchantment, "enchantment", "enchantments", "e")
 setImage(lands,"land","lands","l")
-
-
-// Funktionen zählen die Anzahl der Karten pro Liste und geben sie neben der h2 an
-function amountCards(array, id) {
-    document.getElementById(id).innerHTML += " " + "(" + array.length + ")"
-}
-
-
 amountCards(creature, "h2_creature")
 amountCards(sorcery, "h2_sorcery")
 amountCards(instant, "h2_instant")
 amountCards(artifact, "h2_artifact")
 amountCards(enchantment, "h2_enchantment")
 amountCards(lands, "h2_land")
+}
 
 
-// Hier wird das Bild für die linke main gewählt (detailed view). Die ID die das Event auslöst wird ausgelesen und ist gleichzeitig auch der Dateiname.
-// Mit einer if Schleife stelle ich fest in welchen Ordner die Funktion suchen muss. 
+function setImage(cardtype, id, folder, letter) {
+    for (let i = 1; i<=cardtype.length; i++) {
+        document.getElementById(id).innerHTML += 
+        `<img id=${letter}${i} class="cards" onmouseover="getDetails(event)" onclick="toggleOverlay(event)" src="./img/cards/${folder}/${letter}${i}.webp" alt="Grafik von Karte ${cardtype[i]}">`
+    }
+}
+
+
+function amountCards(array, id) {
+    document.getElementById(id).innerHTML += " " + "(" + array.length + ")"
+}
 
 
 function getDetails(event) {
@@ -204,12 +186,8 @@ function getDetails(event) {
     else if (currentId.includes("l") ) {
         folder = "lands";
     }
-    console.log("Current ID: " + currentId, "Current Folder: " + folder);  
     document.getElementById("activ_card").innerHTML = `<img id=${currentId} src="./img/cards/${folder}/${currentId}.webp" alt="${currentId}">`
 }
-
-
-// Mit der Togglefunktion lasse ich zum Schluss auch die Inhalte rendern. 
 
 
 function toggleOverlay() {
@@ -223,42 +201,34 @@ function getCardname() {
     if (currentId.includes("x")) {
         cardName = commander[0]
         description = commanderText[0]
-        console.log(cardName);
-        console.log(currentId);
     }
     else if (currentId.includes("c")) {
         i = currentId.slice(1);
-        console.log(creature[i-1]);
         cardName = creature[i-1]
         description = creatureText[i-1]
     }
     else if (currentId.includes("s")){
         i = currentId.slice(1);
-        console.log(sorcery[i-1]);
         cardName = sorcery[i-1]
         description = sorceryText[i-1]
     }
     else if (currentId.includes("i")) {
         i = currentId.slice(1);
-        console.log(instant[i-1]);
         cardName = instant[i-1]
         description = instantText[i-1]
     }
     else if (currentId.includes("a")) {
         i = currentId.slice(1);
-        console.log(artifact[i-1]);
         cardName = artifact[i-1]
         description = artifactText[i-1]
     }
     else if (currentId.includes("e")) {
         i = currentId.slice(1);
-        console.log(enchantment[i-1]);
         cardName = enchantment[i-1]
         description = enchantmentText[i-1]
     }
     else if (currentId.includes("l")) {
         i = currentId.slice(1);
-        console.log(lands[i-1]);
         cardName = lands[i-1]
         description = landText[i-1]
     }
@@ -269,39 +239,27 @@ return cardName;
 function getDescription() {
     if (currentId.includes("x")) {
         cardName = commander[0];
-        console.log(cardName);
-        console.log(currentId);
     }
     else if (currentId.includes("c")) {
         i = currentId.slice(1);
-        console.log(creature[i-1]);
     }
     else if (currentId.includes("s")){
         i = currentId.slice(1);
-        console.log(sorcery[i-1]);
     }
     else if (currentId.includes("i")) {
         i = currentId.slice(1);
-        console.log(instant[i-1]);
     }
     else if (currentId.includes("a")) {
         i = currentId.slice(1);
-        console.log(artifact[i-1]);
     }
     else if (currentId.includes("e")) {
         i = currentId.slice(1);
-        console.log(enchantment[i-1]);
     }
     else if (currentId.includes("l")) {
         i = currentId.slice(1);
-        console.log(lands[i-1]);
     }
 return cardName;
 }
-
-
-//Hiermit Fülle ich das Overlay, die If-Abfrage klärt wieder welche Karte geklickt wurde um das richtige Bild sowie Index anzuzeigen. Für den HTML input habe ich
-//eine eigene Funktion gebaut um js und html zu trennen. amountType muss nicht mit übergeben werden, weil global. 
 
 
 function renderOverlay(event){
@@ -337,20 +295,22 @@ function renderOverlay(event){
 ;
     }
 
-    fillOverlay(currentId, folder)   
+    fillOverlay(currentId, folder);
 }
 
 
-// Mit der Funktion fülle ich das Overlay_window mit den ausgewählten Karteninfos. Ich gebe dem Fenster direkt eine ID damit ich diese Info an
-// eine If Schleife weitergeben kann die das Bild davor/danach bestimmt. 
-
-
 function fillOverlay(currentId, folder) {
-        getCardname()
-        document.getElementById("overlay").innerHTML = 
-    
-            `<div id="${currentId}" class="overlay_window" onclick="event.stopPropagation();">
+        getCardname();
+        document.getElementById("overlay").innerHTML = getHTML(currentId, folder);
+;
+
+}
+
+
+function getHTML(currentId, folder) {
+                `<div id="${currentId}" class="overlay_window" onclick="event.stopPropagation();">
                 <div class="upper_overlay_window">
+                    <button class="close_button" onclick="toggleOverlay()">X</button>
                     <div class="overlay_left">
                         <img id=${currentId} onclick="getCardname()" src="./img/cards/${folder}/${currentId}.webp" alt="${currentId}">
                     </div>
@@ -364,70 +324,40 @@ function fillOverlay(currentId, folder) {
                     <span> ${currentId.slice(1)} / ${amountType} </span>
                     <button onclick="nextCard('${currentId}')">></button>                
                 </div>
-            </div>` 
+            </div>`  
 }
-
-
-function checkEvent() {
-    console.log(currentId);
-}
-
-
-// Hier hatte ich ein Problem auf dessen Lösung ich nicht selbst gekommen bin und hab mich nach längeren googeln an Chatgpt gewendet.
-// Beim klicken vom button ist der immer von 1 auf 11 gesprungen. War also schon klar, dass das ne komische Umrechnung iwo ist wo er "1" + 1 rechnet.
-// Der hat parseInt vorgeschlagen und das klappt top.
-// Dazu kam ein Problem, dass renderOverlay(event) ein event als paramenter benötigte und dadurch alles sehr viel komplizierter machte. 
-// Da kam der vorschlag von einem dummyEvent um die Werte so zu übergeben. Vermutlich eine unelegante, aber wirkunsvolle Lösung. Merk ich mir. 
- 
 
 function nextCard(currentId) {
-    console.log(currentId);
-
     folder = ""
     let index = parseInt(currentId.slice(1));
     let prefix = currentId.charAt(0);
     let cardArray = [];
 
     if (prefix === "x") {
-        console.log(prefix);
-        console.log(index);       
-        
         folder = "commander";
         cardArray = commander;
     }
     else if (prefix === "c" ) {
-        console.log(prefix);
-        console.log(index);     
         folder = "creature";
         cardArray = creature;
     }
     else if (prefix === "s") {
-        console.log(prefix);
-        console.log(index);     
         folder = "sorcery";
         cardArray = sorcery;
     }
     else if (prefix === "i") {
-        console.log(prefix);
-        console.log(index);     
         folder = "instants";
         cardArray = instant;
     }
     else if (prefix === "a") {
-        console.log(prefix);
-        console.log(index);     
         folder = "artifact";
         cardArray = artifact;
     }
     else if (prefix === "e") {
-        console.log(prefix);
-        console.log(index);     
         folder = "enchantments";
         cardArray = enchantment;
     }
     else if (prefix === "l") {
-        console.log(prefix);
-        console.log(index);     
         folder = "lands";
         cardArray = lands;
     }
@@ -445,53 +375,36 @@ renderOverlay(dummyEvent)
 
 
 function lastCard(currentId) {
-    console.log(currentId);
-
     folder = ""
     let index = parseInt(currentId.slice(1));
     let prefix = currentId.charAt(0);
     let cardArray = [];
 
     if (prefix === "x") {
-        console.log(prefix);
-        console.log(index);       
-        
         folder = "commander";
         cardArray = commander;
     }
     else if (prefix === "c" ) {
-        console.log(prefix);
-        console.log(index);     
         folder = "creature";
         cardArray = creature;
     }
     else if (prefix === "s") {
-        console.log(prefix);
-        console.log(index);     
         folder = "sorcery";
         cardArray = sorcery;
     }
     else if (prefix === "i") {
-        console.log(prefix);
-        console.log(index);     
         folder = "instants";
         cardArray = instant;
     }
     else if (prefix === "a") {
-        console.log(prefix);
-        console.log(index);     
         folder = "artifact";
         cardArray = artifact;
     }
     else if (prefix === "e") {
-        console.log(prefix);
-        console.log(index);     
         folder = "enchantments";
         cardArray = enchantment;
     }
     else if (prefix === "l") {
-        console.log(prefix);
-        console.log(index);     
         folder = "lands";
         cardArray = lands;
     }
