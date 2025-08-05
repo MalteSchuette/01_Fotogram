@@ -308,7 +308,7 @@ function fillOverlay(currentId, folder) {
 
 
 function getHTML(currentId, folder) {
-                `<div id="${currentId}" class="overlay_window" onclick="event.stopPropagation();">
+    return  `<div id="${currentId}" class="overlay_window" onclick="event.stopPropagation();">
                 <div class="upper_overlay_window">
                     <button class="close_button" onclick="toggleOverlay()">X</button>
                     <div class="overlay_left">

@@ -242,6 +242,10 @@ footer {
 
 }
 
+.flex_center {
+
+}
+
 .close_button:hover {
     box-sizing: border-box;
     cursor: pointer;
@@ -381,6 +385,12 @@ footer {
     .close_button {
         top: 2px;
         left: 280px;
+    }
+
+    .flex_center {    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     }
 }
 
