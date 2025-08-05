@@ -304,7 +304,7 @@ function fillOverlay(currentId, folder) {
 function getHTML(currentId, folder) {
     return  `<div id="${currentId}" class="overlay_window" onclick="event.stopPropagation();">
                 <div class="upper_overlay_window">
-                    <button class="close_button" onclick="toggleOverlay()">X</button>
+                    <button class="close_button" onclick="close_overlay()">X</button>
                     <div class="overlay_left">
                         <img id=${currentId} onclick="getCardname()" src="./img/cards/${folder}/${currentId}.webp" alt="${currentId}">
                     </div>
@@ -320,6 +320,11 @@ function getHTML(currentId, folder) {
                 </div>
             </div>`  
 }
+
+function close_overlay() {
+    document.getElementById("overlay").classList.toggle("d_none");
+}
+
 
 function nextCard(currentId) {
     folder = ""
