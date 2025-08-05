@@ -203,38 +203,32 @@ function getCardname() {
         description = commanderText[0]
     }
     else if (currentId.includes("c")) {
-        i = currentId.slice(1);
-        cardName = creature[i-1]
-        description = creatureText[i-1]
+        setInfo(currentId , creature, creatureText)
     }
     else if (currentId.includes("s")){
-        i = currentId.slice(1);
-        cardName = sorcery[i-1]
-        description = sorceryText[i-1]
+        setInfo(currentId, sorcery, sorceryText)
     }
     else if (currentId.includes("i")) {
-        i = currentId.slice(1);
-        cardName = instant[i-1]
-        description = instantText[i-1]
+        setInfo(currentId, instant, instantText)
     }
     else if (currentId.includes("a")) {
-        i = currentId.slice(1);
-        cardName = artifact[i-1]
-        description = artifactText[i-1]
+        setInfo(currentId, artifact, artifactText)
     }
     else if (currentId.includes("e")) {
-        i = currentId.slice(1);
-        cardName = enchantment[i-1]
-        description = enchantmentText[i-1]
+        setInfo(currentId, enchantment, enchantmentText)
     }
     else if (currentId.includes("l")) {
-        i = currentId.slice(1);
-        cardName = lands[i-1]
-        description = landText[i-1]
+        setInfo(currentId, lands, landText)
     }
 return cardName;
 }
 
+
+function setInfo(currentId, nameArray, textArray) {
+        i = currentId.slice(1);
+        cardName = nameArray[i-1]
+        description = textArray[i-1]
+}
 
 function getDescription() {
     if (currentId.includes("x")) {
